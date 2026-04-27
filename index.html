@@ -515,7 +515,7 @@
   <div class="dropzone" id="dropzone">
     <input type="file" accept="image/*" id="fileInput">
     <span class="drop-icon">🖼️</span>
-    <p class="drop-text">タップして写真を選択</p>
+    <p class="drop-text" id="dropText">タップして写真を選択</p>
     <p class="drop-hint">JPG / PNG / HEIC対応　1枚ずつ処理</p>
   </div>
 
@@ -636,6 +636,12 @@
   const qualityVal = document.getElementById('qualityVal');
   const customSize = document.getElementById('customSize');
   const customW = document.getElementById('customW');
+
+  // デバイス判定してテキスト出し分け
+  const isTouchDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  document.getElementById('dropText').textContent = isTouchDevice
+    ? 'タップして写真を選択'
+    : 'クリックして写真を選択';
   const customH = document.getElementById('customH');
 
   let currentFile = null;
