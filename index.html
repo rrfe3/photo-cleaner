@@ -249,6 +249,7 @@
     display: none;
     gap: 0.5rem;
     align-items: center;
+    margin-top: 0.75rem;
   }
 
   .custom-size.visible { display: flex; }
@@ -535,29 +536,23 @@
     <div>
       <span class="setting-label">リサイズ</span>
       <div class="size-grid">
-        <button class="size-btn active" data-w="1920" data-h="1080">
+        <button class="size-btn active" data-w="1920">
           <span class="size-num">1920px</span>
-          <span class="size-desc">フルHD</span>
         </button>
-        <button class="size-btn" data-w="1280" data-h="720">
+        <button class="size-btn" data-w="1280">
           <span class="size-num">1280px</span>
-          <span class="size-desc">HD</span>
         </button>
-        <button class="size-btn" data-w="800" data-h="800">
+        <button class="size-btn" data-w="1000">
+          <span class="size-num">1000px</span>
+        </button>
+        <button class="size-btn" data-w="800">
           <span class="size-num">800px</span>
-          <span class="size-desc">Web用</span>
         </button>
-        <button class="size-btn" data-w="600" data-h="600">
-          <span class="size-num">600px</span>
-          <span class="size-desc">SNS</span>
+        <button class="size-btn" data-w="original">
+          <span class="size-num">変更なし</span>
         </button>
-        <button class="size-btn" data-w="400" data-h="400">
-          <span class="size-num">400px</span>
-          <span class="size-desc">サムネ</span>
-        </button>
-        <button class="size-btn" data-w="custom" data-h="custom">
+        <button class="size-btn" data-w="custom">
           <span class="size-num">カスタム</span>
-          <span class="size-desc">任意サイズ</span>
         </button>
       </div>
       <div class="custom-size" id="customSize">
@@ -571,8 +566,8 @@
     <div>
       <span class="setting-label">品質</span>
       <div class="quality-row">
-        <input type="range" id="quality" min="10" max="100" value="100">
-        <span class="quality-val" id="qualityVal">100%</span>
+        <input type="range" id="quality" min="10" max="100" value="95">
+        <span class="quality-val" id="qualityVal">95%</span>
       </div>
     </div>
 
@@ -741,6 +736,8 @@
       let tw;
       if (selectedW === 'custom') {
         tw = parseInt(customW.value) || img.naturalWidth;
+      } else if (selectedW === 'original') {
+        tw = img.naturalWidth;
       } else {
         tw = parseInt(selectedW);
       }
